@@ -412,3 +412,403 @@ body {
 .video-chat-container {
   animation: fade-in 0.5s ease-out;
 }
+
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background-color: var(--background-color);
+}
+
+.perspective-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 2000px;
+  perspective-origin: 50% 50%;
+}
+
+.shape-container {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  opacity: 0.7;
+  transform-style: preserve-3d;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.shape-container-1 { top: 15%; left: 10%; }
+.shape-container-2 { top: 65%; right: 10%; }
+.shape-container-3 { top: 40%; left: 45%; }
+.shape-container-4 { top: 20%; right: 35%; }
+.shape-container-5 { bottom: 25%; left: 70%; }
+
+.shape-transformer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: transform-container 20s infinite linear;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.transformer-1 { animation-delay: 0s; }
+.transformer-2 { animation-delay: -4s; }
+.transformer-3 { animation-delay: -8s; }
+.transformer-4 { animation-delay: -12s; }
+.transformer-5 { animation-delay: -16s; }
+
+.shape-fragment {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease-in-out;
+}
+
+/* 3D Face Positioning */
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--primary-color) 0%, transparent 60%);
+  border: 2px solid var(--primary-color);
+  backface-visibility: visible;
+  opacity: 0.8;
+}
+
+/* Face Transformations */
+.face.front  { transform: translateZ(50px); }
+.face.back   { transform: translateZ(-50px) rotateY(180deg); }
+.face.left   { transform: translateX(-50px) rotateY(-90deg); }
+.face.right  { transform: translateX(50px) rotateY(90deg); }
+.face.top    { transform: translateY(-50px) rotateX(90deg); }
+.face.bottom { transform: translateY(50px) rotateX(-90deg); }
+
+/* Fragment Animations - Apply to all transformers */
+.transformer-1 .fragment-1,
+.transformer-2 .fragment-1,
+.transformer-3 .fragment-1 {
+  animation: fragment-3d-1 15s infinite ease-in-out;
+}
+
+.transformer-1 .fragment-2,
+.transformer-2 .fragment-2,
+.transformer-3 .fragment-2 {
+  animation: fragment-3d-2 15s infinite ease-in-out;
+}
+
+.transformer-1 .fragment-3,
+.transformer-2 .fragment-3,
+.transformer-3 .fragment-3 {
+  animation: fragment-3d-3 15s infinite ease-in-out;
+}
+
+/* Stagger the animations for visual interest */
+.transformer-2 .fragment-1,
+.transformer-2 .fragment-2,
+.transformer-2 .fragment-3 {
+  animation-delay: 5s;
+}
+
+.transformer-3 .fragment-1,
+.transformer-3 .fragment-2,
+.transformer-3 .fragment-3 {
+  animation-delay: 10s;
+}
+
+/* Update transformer 4 and 5 to use fragment animations */
+.transformer-4 {
+  animation: none;
+}
+
+.transformer-4 .fragment-1 {
+  animation: fragment-3d-1 15s infinite ease-in-out;
+  animation-delay: 7s;
+}
+
+.transformer-4 .fragment-2 {
+  animation: fragment-3d-2 15s infinite ease-in-out;
+  animation-delay: 7s;
+}
+
+.transformer-4 .fragment-3 {
+  animation: fragment-3d-3 15s infinite ease-in-out;
+  animation-delay: 7s;
+}
+
+.transformer-5 {
+  animation: none;
+}
+
+.transformer-5 .fragment-1 {
+  animation: fragment-3d-1 15s infinite ease-in-out;
+  animation-delay: 12s;
+}
+
+.transformer-5 .fragment-2 {
+  animation: fragment-3d-2 15s infinite ease-in-out;
+  animation-delay: 12s;
+}
+
+.transformer-5 .fragment-3 {
+  animation: fragment-3d-3 15s infinite ease-in-out;
+  animation-delay: 12s;
+}
+
+/* Enhance the fragment animations with more dramatic morphing */
+@keyframes fragment-3d-1 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  25% {
+    transform: translate3d(-80px, -80px, 200px) rotateX(120deg) rotateY(45deg) scale3d(0.5, 0.5, 0.5);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  50% {
+    transform: translate3d(0, -120px, -200px) rotateX(240deg) rotateY(90deg) scale3d(0.8, 0.8, 0.8);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  75% {
+    transform: translate3d(80px, -80px, 150px) rotateX(360deg) rotateY(135deg) scale3d(0.3, 0.3, 0.3);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@keyframes fragment-3d-2 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  25% {
+    transform: translate3d(80px, -80px, -150px) rotateX(-120deg) rotateY(-45deg) scale3d(0.4, 0.4, 0.4);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  50% {
+    transform: translate3d(120px, 0, 200px) rotateX(-240deg) rotateY(-90deg) scale3d(0.7, 0.7, 0.7);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  75% {
+    transform: translate3d(80px, 80px, -200px) rotateX(-360deg) rotateY(-135deg) scale3d(0.6, 0.6, 0.6);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@keyframes fragment-3d-3 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0deg);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  25% {
+    transform: translate3d(0, 80px, 250px) scale3d(0.5, 0.5, 2) rotateX(180deg);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  50% {
+    transform: translate3d(0, 120px, -200px) scale3d(1.5, 1.5, 0.5) rotateX(360deg);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  75% {
+    transform: translate3d(0, -80px, 150px) scale3d(0.5, 0.5, 2) rotateX(540deg);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Container Movement with 3D - Precise collision avoidance */
+@keyframes container-move-3d-1 {
+  0% { 
+    transform: translate3d(0, 0, 200px);
+    animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  12.5% { 
+    transform: translate3d(30vw, 15vh, 100px);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  }
+  25% {
+    transform: translate3d(15vw, 40vh, -100px);
+    animation-timing-function: cubic-bezier(0.36, 0, 0.66, -0.56);
+  }
+  37.5% {
+    transform: translate3d(-20vw, 25vh, 150px);
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  50% {
+    transform: translate3d(-35vw, 0, 200px);
+    animation-timing-function: cubic-bezier(0.36, 0, 0.66, -0.56);
+  }
+  62.5% {
+    transform: translate3d(-15vw, -25vh, -150px);
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  75% {
+    transform: translate3d(20vw, -35vh, 100px);
+    animation-timing-function: cubic-bezier(0.36, 0, 0.66, -0.56);
+  }
+  87.5% {
+    transform: translate3d(35vw, -15vh, -200px);
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  100% {
+    transform: translate3d(0, 0, 200px);
+    animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+}
+
+@keyframes container-move-3d-2 {
+  0% {
+    transform: translate3d(0, 0, -200px);
+    animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  12.5% {
+    transform: translate3d(-35vw, -20vh, -100px);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  }
+  25% {
+    transform: translate3d(-15vw, 35vh, 100px);
+    animation-timing-function: cubic-bezier(0.36, 0, 0.66, -0.56);
+  }
+  37.5% {
+    transform: translate3d(25vw, 15vh, -150px);
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  50% {
+    transform: translate3d(30vw, -10vh, -200px);
+    animation-timing-function: cubic-bezier(0.36, 0, 0.66, -0.56);
+  }
+  62.5% {
+    transform: translate3d(10vw, -30vh, 150px);
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  75% {
+    transform: translate3d(-20vw, -25vh, -100px);
+    animation-timing-function: cubic-bezier(0.36, 0, 0.66, -0.56);
+  }
+  87.5% {
+    transform: translate3d(-30vw, 5vh, 200px);
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  100% {
+    transform: translate3d(0, 0, -200px);
+    animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+}
+
+@keyframes container-move-3d-3 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  12.5% {
+    transform: translate3d(25vw, -30vh, 150px);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  }
+  25% {
+    transform: translate3d(-20vw, -15vh, -150px);
+    animation-timing-function: cubic-bezier(0.36, 0, 0.66, -0.56);
+  }
+  37.5% {
+    transform: translate3d(-35vw, 20vh, 100px);
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  50% {
+    transform: translate3d(-15vw, 35vh, -100px);
+    animation-timing-function: cubic-bezier(0.36, 0, 0.66, -0.56);
+  }
+  62.5% {
+    transform: translate3d(20vw, 25vh, 150px);
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  75% {
+    transform: translate3d(35vw, 0, -150px);
+    animation-timing-function: cubic-bezier(0.36, 0, 0.66, -0.56);
+  }
+  87.5% {
+    transform: translate3d(15vw, -25vh, 100px);
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+}
+
+/* Adjust animation durations for smoother movement */
+.shape-container-1 {
+  animation: container-move-3d-1 60s infinite;
+  animation-timing-function: linear !important;
+}
+
+.shape-container-2 {
+  animation: container-move-3d-2 60s infinite;
+  animation-timing-function: linear !important;
+}
+
+.shape-container-3 {
+  animation: container-move-3d-3 60s infinite;
+  animation-timing-function: linear !important;
+}
+
+/* Enhanced bounce physics */
+.shape-container {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  opacity: 0.7;
+  transform-style: preserve-3d;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Optimized initial positions to prevent overlaps */
+.shape-container-1 { top: 15%; left: 10%; }
+.shape-container-2 { top: 65%; right: 10%; }
+.shape-container-3 { top: 40%; left: 45%; }
+.shape-container-4 { top: 20%; right: 35%; }
+.shape-container-5 { bottom: 25%; left: 70%; }
+
+/* Collision bounce effect */
+@keyframes bounce-effect {
+  0%, 100% {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(0.85, 0.85, 0.85);
+  }
+}
+
+/* Add bounce animation on collision */
+.shape-container.collision {
+  animation: bounce-effect 0.3s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
+}
+
+/* Enhanced movement transitions */
+.shape-transformer {
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Special effects for transformer 4 and 5 */
+.transformer-4 {
+  animation: shape-4-3d 20s linear infinite;
+}
+
+.transformer-5 {
+  animation: shape-5-3d 26s linear infinite;
+}
+
+@keyframes shape-4-3d {
+  0%, 100% { transform: rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); }
+  25% { transform: rotateX(90deg) rotateY(45deg) scale3d(1.2, 1.2, 1.2); }
+  50% { transform: rotateX(180deg) rotateY(90deg) scale3d(1, 1, 1); }
+  75% { transform: rotateX(270deg) rotateY(135deg) scale3d(0.8, 0.8, 0.8); }
+}
+
+@keyframes shape-5-3d {
+  0%, 100% { transform: rotateX(0deg) rotateY(0deg) translateZ(0); }
+  25% { transform: rotateX(90deg) rotateY(45deg) translateZ(100px); }
+  50% { transform: rotateX(180deg) rotateY(90deg) translateZ(0); }
+  75% { transform: rotateX(270deg) rotateY(135deg) translateZ(-100px); }
+}
