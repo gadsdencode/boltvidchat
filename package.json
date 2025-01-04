@@ -5,7 +5,7 @@
       "type": "module",
       "scripts": {
             "dev": "vite",
-            "build": "vite build",
+            "build": "cd .. && npm run build --prefix frontend && cd server",
             "preview": "vite preview",
             "server": "node server/index.js"
       },
